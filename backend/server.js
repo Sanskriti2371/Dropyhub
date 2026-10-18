@@ -14,36 +14,62 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database connection
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log(`Connected to MongoDB successfully at ${MONGO_URI}`);
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err.message);
-  });
+// Serverless-friendly DB connection middleware
+let isConnected = false;
+app.use(async (req, res, next) => {
+  if (!isConnected && mongoose.connection.readyState === 0) {
+    try {
+      await mongoose.connect(MONGO_URI);
+      isConnected = true;
+      console.log(`Connected to MongoDB successfully at ${MONGO_URI}`);
+    } catch (err) {
+      console.error('MongoDB connection error:', err.message);
+    }
+  }
+  next();
+});
+
+// Initial database connection for local server
+if (mongoose.connection.readyState === 0) {
+  mongoose
+    .connect(MONGO_URI)
+    .then(() => {
+      isConnected = true;
+      console.log(`Connected to MongoDB successfully at ${MONGO_URI}`);
+    })
+    .catch((err) => {
+      console.error('MongoDB connection error:', err.message);
+    });
+}
+
+// Create API router
+const apiRouter = express.Router();
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+apiRouter.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
+    dbState: mongoose.connection.readyState
   });
 });
 
 // Mount API routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/products', require('./routes/products'));
-app.use('/api/offers', require('./routes/offers'));
-app.use('/api/wishlist', require('./routes/wishlist'));
-app.use('/api/redirect', require('./routes/redirect'));
-app.use('/api/analytics', require('./routes/analytics'));
+apiRouter.use('/auth', require('./routes/auth'));
+apiRouter.use('/products', require('./routes/products'));
+apiRouter.use('/offers', require('./routes/offers'));
+apiRouter.use('/wishlist', require('./routes/wishlist'));
+apiRouter.use('/redirect', require('./routes/redirect'));
+apiRouter.use('/analytics', require('./routes/analytics'));
+
+// Mount on both /api and / so it works regardless of Vercel path rewriting
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 // Default 404 handler for unknown endpoints
 app.use((req, res) => {
-  res.status(404).json({ message: `Route ${req.originalUrl} not found` });
+  res.status(404).json({ message: `Route ${req.originalUrl || req.url} not found` });
 });
 
 // Centralized error handler
