@@ -31,40 +31,49 @@ const BRAND_PATTERNS = [
   { name: 'Whirlpool', regex: /\b(whirlpool)\b/i }
 ];
 
-const CATEGORY_MAP = [
+// Product archetype configs with exact matching images and realistic base prices
+const ARCHETYPE_CONFIGS = [
   {
-    category: 'Smartphones',
-    regex: /\b(phone|mobile|smartphone|iphone|galaxy|pixel|oneplus|redmi|realme|vivo|oppo|poco|5g|android)\b/i,
-    basePrice: 24999,
+    regex: /\b(ipad|tablet|tab)\b/i,
+    category: 'Laptops',
+    basePrice: 34900,
     merchants: ['Amazon India', 'Flipkart', 'Croma'],
     images: [
-      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=80'
     ]
   },
   {
-    category: 'Laptops',
-    regex: /\b(laptop|notebook|macbook|thinkpad|zenbook|vivobook|pavilion|inspiron|legion|omen|gaming laptop|pc|computer)\b/i,
-    basePrice: 59990,
-    merchants: ['Amazon India', 'Flipkart', 'Reliance Digital'],
+    regex: /\b(tv|television|bravia|led|oled|smart tv)\b/i,
+    category: 'Home Appliances',
+    basePrice: 39990,
+    merchants: ['Amazon India', 'Flipkart', 'Croma'],
     images: [
-      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=800&q=80'
     ]
   },
   {
-    category: 'Watches',
-    regex: /\b(watch|smartwatch|chronograph|g-shock|casio|titan|fossil|timex|rolex|tissot|analog|timepiece)\b/i,
-    basePrice: 6995,
-    merchants: ['Amazon India', 'Flipkart', 'Tata CLiQ'],
+    regex: /\b(camera|dslr|lens|mirrorless)\b/i,
+    category: 'Home Appliances',
+    basePrice: 49990,
+    merchants: ['Amazon India', 'Flipkart', 'Croma'],
     images: [
-      'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80'
     ]
   },
   {
+    regex: /\b(airpods|earbuds|buds|tws|earphone|earphones)\b/i,
     category: 'Headphones',
-    regex: /\b(headphone|earphone|earbuds|airpods|buds|tws|neckband|headset|audio|speaker|anc|wireless earbuds)\b/i,
+    basePrice: 2499,
+    merchants: ['Amazon India', 'Flipkart', 'Croma'],
+    images: [
+      'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(headphone|headphones|headset)\b/i,
+    category: 'Headphones',
     basePrice: 4999,
     merchants: ['Amazon India', 'Flipkart', 'Croma'],
     images: [
@@ -73,9 +82,29 @@ const CATEGORY_MAP = [
     ]
   },
   {
+    regex: /\b(watch|smartwatch|chronograph|g-shock|casio|titan|timex|fastrack|fossil)\b/i,
+    category: 'Watches',
+    basePrice: 4995,
+    merchants: ['Amazon India', 'Flipkart', 'Tata CLiQ'],
+    images: [
+      'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(laptop|notebook|macbook|thinkpad|zenbook|vivobook|inspiron|pavilion)\b/i,
+    category: 'Laptops',
+    basePrice: 59990,
+    merchants: ['Amazon India', 'Flipkart', 'Reliance Digital'],
+    images: [
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(shoe|shoes|sneaker|sneakers|boots)\b/i,
     category: 'Fashion',
-    regex: /\b(shoe|shoes|sneaker|sneakers|shirt|t-shirt|tshirt|jeans|jacket|hoodie|pant|sunglass|sunglasses|dress|trouser|kurta|wear|clothing)\b/i,
-    basePrice: 2999,
+    basePrice: 3499,
     merchants: ['Myntra', 'Amazon India', 'Ajio'],
     images: [
       'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
@@ -83,13 +112,50 @@ const CATEGORY_MAP = [
     ]
   },
   {
+    regex: /\b(shirt|tshirt|t-shirt|polo|hoodie|jacket|jeans|clothing|apparel|dress)\b/i,
+    category: 'Fashion',
+    basePrice: 1999,
+    merchants: ['Myntra', 'Amazon India', 'Ajio'],
+    images: [
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(fridge|refrigerator)\b/i,
     category: 'Home Appliances',
-    regex: /\b(appliance|fryer|air fryer|pot|cooker|microwave|oven|vacuum|cleaner|purifier|ro|mixer|grinder|blender|fridge|refrigerator|ac|air conditioner|washing machine|fan|kettle|iron)\b/i,
-    basePrice: 8499,
+    basePrice: 24990,
     merchants: ['Amazon India', 'Flipkart', 'Croma'],
     images: [
-      'https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(fryer|air fryer)\b/i,
+    category: 'Home Appliances',
+    basePrice: 8999,
+    merchants: ['Amazon India', 'Flipkart', 'Croma'],
+    images: [
+      'https://images.unsplash.com/photo-1585659722983-3a675dabf23d?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(vacuum|cleaner)\b/i,
+    category: 'Home Appliances',
+    basePrice: 19990,
+    merchants: ['Amazon India', 'Flipkart', 'Croma'],
+    images: [
+      'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=800&q=80'
+    ]
+  },
+  {
+    regex: /\b(phone|smartphone|iphone|galaxy|pixel|oneplus|mobile|android|5g)\b/i,
+    category: 'Smartphones',
+    basePrice: 24999,
+    merchants: ['Amazon India', 'Flipkart', 'Croma'],
+    images: [
+      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80'
     ]
   }
 ];
@@ -117,31 +183,36 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
     }
   }
 
-  // 2. Identify category
-  let categoryConfig = null;
+  // 2. Identify archetype by exact item pattern first
+  let config = ARCHETYPE_CONFIGS.find((c) => c.regex.test(query));
+
+  // If requestedCategory was specified and doesn't match archetype, adjust
   if (requestedCategory) {
-    categoryConfig = CATEGORY_MAP.find((c) => c.category.toLowerCase() === requestedCategory.toLowerCase());
-  }
-  if (!categoryConfig) {
-    categoryConfig = CATEGORY_MAP.find((c) => c.regex.test(query)) || CATEGORY_MAP[0]; // default Smartphones/Tech
+    const byCategory = ARCHETYPE_CONFIGS.find((c) => c.category.toLowerCase() === requestedCategory.toLowerCase());
+    if (byCategory) config = byCategory;
   }
 
-  const categoryName = categoryConfig.category;
+  // Default fallback if nothing matched
+  if (!config) {
+    config = ARCHETYPE_CONFIGS[ARCHETYPE_CONFIGS.length - 1]; // Smartphones fallback
+  }
+
+  const categoryName = config.category;
   const cleanTitle = titleCase(query);
 
   // Generate 2 complementary product models
   const productConfigs = [
     {
-      name: `${detectedBrand !== 'DealBridge Choice' && !cleanTitle.includes(detectedBrand) ? detectedBrand + ' ' : ''}${cleanTitle} (Standard Edition)`,
+      name: `${detectedBrand !== 'DealBridge Choice' && !cleanTitle.toLowerCase().includes(detectedBrand.toLowerCase()) ? detectedBrand + ' ' : ''}${cleanTitle} (Standard Edition)`,
       model: cleanTitle,
       variant: 'Standard Edition',
-      basePrice: categoryConfig.basePrice
+      basePrice: config.basePrice
     },
     {
-      name: `${detectedBrand !== 'DealBridge Choice' && !cleanTitle.includes(detectedBrand) ? detectedBrand + ' ' : ''}${cleanTitle} (Pro Edition)`,
+      name: `${detectedBrand !== 'DealBridge Choice' && !cleanTitle.toLowerCase().includes(detectedBrand.toLowerCase()) ? detectedBrand + ' ' : ''}${cleanTitle} (Pro Edition)`,
       model: `${cleanTitle} Pro`,
       variant: 'Pro Edition',
-      basePrice: Math.round(categoryConfig.basePrice * 1.35)
+      basePrice: Math.round(config.basePrice * 1.35)
     }
   ];
 
@@ -161,7 +232,7 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
       model: cfg.model,
       variant: cfg.variant,
       category: categoryName,
-      description: `Premium ${cfg.name} offering top-tier performance, reliable durability, and verified multi-merchant pricing. Compare offers across leading Indian retailers to grab the best deal today.`,
+      description: `Official ${cfg.name} with certified manufacturer warranty. Featuring high performance, premium build quality, and verified comparison pricing across leading e-commerce merchants.`,
       specifications: {
         category: categoryName,
         brand: detectedBrand,
@@ -169,7 +240,7 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
         warranty: '1 Year Manufacturer Domestic Warranty',
         inTheBox: 'Product Unit, User Documentation, Standard Accessories'
       },
-      images: categoryConfig.images,
+      images: config.images,
       canonicalId,
       popularity: Math.floor(Math.random() * 30) + 70,
       isActive: true
@@ -179,13 +250,13 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
     createdProducts.push(product);
 
     // Create 3 merchant offers
-    const merchants = categoryConfig.merchants;
+    const merchants = config.merchants;
     const baseP = cfg.basePrice;
 
     const offerVariations = [
-      { merchant: merchants[0], price: baseP, diff: 0 },
-      { merchant: merchants[1], price: Math.round(baseP * 1.03), diff: 3 },
-      { merchant: merchants[2], price: Math.round(baseP * 1.06), diff: 6 }
+      { merchant: merchants[0], price: baseP },
+      { merchant: merchants[1], price: Math.round(baseP * 1.02) },
+      { merchant: merchants[2], price: Math.round(baseP * 1.05) }
     ];
 
     for (const off of offerVariations) {

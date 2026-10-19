@@ -481,7 +481,91 @@ const additionalProducts = [
     ]
   },
 
-  // ==================== LAPTOPS ====================
+  // ==================== LAPTOPS & TABLETS ====================
+  {
+    product: {
+      name: 'Apple iPad 10th Gen 10.9-inch Wi-Fi 64GB Blue',
+      brand: 'Apple',
+      model: 'iPad 10th Gen',
+      variant: '10.9-inch Wi-Fi 64GB Blue',
+      category: 'Laptops',
+      description: 'Colorfully reimagined iPad with 10.9-inch Liquid Retina display, powerful A14 Bionic chip, landscape 12MP Ultra Wide front camera with Center Stage, and USB-C connectivity.',
+      specifications: {
+        display: '10.9-inch Liquid Retina display with True Tone',
+        chipset: 'A14 Bionic chip with 6-core CPU and 4-core GPU',
+        camera: '12MP Wide back camera, 12MP Ultra Wide front camera',
+        connectivity: 'Wi-Fi 6 and USB-C connector',
+        accessories: 'Supports Apple Pencil (USB-C & 1st gen) and Magic Keyboard Folio'
+      },
+      images: [
+        'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=80'
+      ],
+      popularity: 180
+    },
+    offers: [
+      {
+        merchantName: 'Amazon India',
+        price: 34900,
+        productUrl: 'https://www.amazon.in/s?k=Apple+iPad+10th+Gen+64GB&tag=dealbridge-21',
+        availability: true
+      },
+      {
+        merchantName: 'Flipkart',
+        price: 35490,
+        productUrl: 'https://www.flipkart.com/search?q=Apple+iPad+10th+Gen+64GB',
+        availability: true
+      },
+      {
+        merchantName: 'Croma',
+        price: 36900,
+        productUrl: 'https://www.croma.com/searchB?q=iPad+10th+Gen',
+        availability: true
+      }
+    ]
+  },
+  {
+    product: {
+      name: 'Apple iPad Air 11-inch M2 Chip Wi-Fi 128GB Space Grey',
+      brand: 'Apple',
+      model: 'iPad Air 11-inch M2',
+      variant: '11-inch Wi-Fi 128GB Space Grey',
+      category: 'Laptops',
+      description: 'Redesigned iPad Air turbocharged by the breakthrough Apple M2 chip. Brilliant Liquid Retina display, landscape 12MP front camera with Center Stage, and Wi-Fi 6E.',
+      specifications: {
+        display: '11-inch Liquid Retina display with P3 wide color and anti-reflective coating',
+        processor: 'Apple M2 chip with 8-core CPU and 10-core GPU',
+        storage: '128GB High-Speed Flash Storage',
+        audio: 'Landscape stereo speakers with Spatial Audio',
+        compatibility: 'Supports Apple Pencil Pro and Magic Keyboard'
+      },
+      images: [
+        'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80'
+      ],
+      popularity: 165
+    },
+    offers: [
+      {
+        merchantName: 'Amazon India',
+        price: 59900,
+        productUrl: 'https://www.amazon.in/s?k=Apple+iPad+Air+M2+128GB&tag=dealbridge-21',
+        availability: true
+      },
+      {
+        merchantName: 'Flipkart',
+        price: 60490,
+        productUrl: 'https://www.flipkart.com/search?q=Apple+iPad+Air+M2',
+        availability: true
+      },
+      {
+        merchantName: 'Reliance Digital',
+        price: 61900,
+        productUrl: 'https://www.reliancedigital.in/search?q=iPad+Air+M2',
+        availability: true
+      }
+    ]
+  },
   {
     product: {
       name: 'Apple MacBook Air 13-inch M1 Chip Space Grey',
