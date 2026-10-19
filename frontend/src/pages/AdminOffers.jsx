@@ -241,7 +241,7 @@ const AdminOffers = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="offer-price">Price ($) *</label>
+                <label htmlFor="offer-price">Price (₹) *</label>
                 <input
                   id="offer-price"
                   name="price"
@@ -329,7 +329,7 @@ const AdminOffers = () => {
                     <strong>{offer.merchantName}</strong>
                   </td>
                   <td>
-                    <span className="price-tag-table">${Number(offer.price).toFixed(2)}</span>
+                    <span className="price-tag-table">₹{Number(offer.price).toLocaleString('en-IN')}</span>
                   </td>
                   <td>
                     {offer.availability ? (

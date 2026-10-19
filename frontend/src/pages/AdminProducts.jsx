@@ -378,7 +378,7 @@ const AdminProducts = () => {
                   <td>{p.model || '-'}</td>
                   <td>
                     {p.lowestPrice !== null && p.lowestPrice !== undefined
-                      ? `$${Number(p.lowestPrice).toFixed(2)}`
+                      ? `₹${Number(p.lowestPrice).toLocaleString('en-IN')}`
                       : '-'}
                   </td>
                   <td style={{ textAlign: 'right' }}>

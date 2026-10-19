@@ -97,7 +97,7 @@ const Wishlist = () => {
                   <td>{item.category}</td>
                   <td>
                     {item.lowestPrice !== null && item.lowestPrice !== undefined ? (
-                      <span className="price-tag-table">${Number(item.lowestPrice).toFixed(2)}</span>
+                      <span className="price-tag-table">₹{Number(item.lowestPrice).toLocaleString('en-IN')}</span>
                     ) : (
                       <span className="text-muted">No offers</span>
                     )}

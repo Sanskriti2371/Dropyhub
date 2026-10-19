@@ -1009,6 +1009,9 @@ const productsData = [
   }
 ];
 
+const additionalProducts = require('./data/additionalProducts');
+const combinedProducts = [...productsData, ...additionalProducts];
+
 async function seedDatabase() {
   try {
     console.log('Connecting to database:', MONGO_URI);
@@ -1017,7 +1020,7 @@ async function seedDatabase() {
 
     // Clear existing collections
     await Promise.all([
-      User.deleteMany({}),
+      User.deleteMany({ email: { $in: ['admin@dealbridge.com', 'user@dealbridge.com'] } }),
       Product.deleteMany({}),
       MerchantOffer.deleteMany({}),
       Click.deleteMany({})
@@ -1048,12 +1051,12 @@ async function seedDatabase() {
     console.log(`Users created:\n  - Admin: ${adminUser.email}\n  - User: ${standardUser.email}`);
 
     // 2. Seed Products and Merchant Offers
-    console.log(`Seeding ${productsData.length} products across 6 categories...`);
+    console.log(`Seeding ${combinedProducts.length} products across 6 categories...`);
 
     const createdProductDocs = [];
     const createdOfferDocs = [];
 
-    for (const item of productsData) {
+    for (const item of combinedProducts) {
       const product = new Product(item.product);
       await product.save();
       createdProductDocs.push(product);

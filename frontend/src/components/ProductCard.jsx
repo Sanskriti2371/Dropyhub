@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
           {product.lowestPrice !== null && product.lowestPrice !== undefined ? (
             <>
               <span className="price-label">From: </span>
-              <span className="price-amount">${Number(product.lowestPrice).toFixed(2)}</span>
+              <span className="price-amount">₹{Number(product.lowestPrice).toLocaleString('en-IN')}</span>
             </>
           ) : (
             <span className="no-price">No active offers</span>

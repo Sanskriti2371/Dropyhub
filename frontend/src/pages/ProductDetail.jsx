@@ -196,7 +196,7 @@ const ProductDetail = () => {
             {lowestPrice !== null && lowestPrice !== undefined ? (
               <>
                 <span className="price-tag">Best Price:</span>
-                <span className="price-val">${Number(lowestPrice).toFixed(2)}</span>
+                <span className="price-val">₹{Number(lowestPrice).toLocaleString('en-IN')}</span>
               </>
             ) : (
               <span className="no-price">Currently no active offers</span>
@@ -263,7 +263,7 @@ const ProductDetail = () => {
                       {isLowest && <span className="badge-best-price">Lowest Price</span>}
                     </td>
                     <td className="offer-price-cell">
-                      ${Number(offer.price).toFixed(2)}
+                      ₹{Number(offer.price).toLocaleString('en-IN')}
                     </td>
                     <td>
                       {offer.availability ? (

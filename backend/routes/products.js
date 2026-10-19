@@ -140,9 +140,22 @@ router.get('/', async (req, res) => {
       }
     });
 
-    const results = await Product.aggregate(pipeline);
-    const total = results[0]?.totalData[0]?.count || 0;
-    const products = results[0]?.products || [];
+    let results = await Product.aggregate(pipeline);
+    let total = results[0]?.totalData[0]?.count || 0;
+    let products = results[0]?.products || [];
+
+    // If search term yielded no products, automatically discover/generate them on-demand
+    if (search && search.trim() && total === 0) {
+      try {
+        const { autoDiscoverProducts } = require('../utils/autoDiscover');
+        await autoDiscoverProducts(search.trim(), category);
+        results = await Product.aggregate(pipeline);
+        total = results[0]?.totalData[0]?.count || 0;
+        products = results[0]?.products || [];
+      } catch (autoErr) {
+        console.error('Error in autoDiscoverProducts:', autoErr);
+      }
+    }
 
     res.json({
       products,

@@ -155,11 +155,11 @@ const Home = () => {
         </div>
 
         <div className="filter-group price-inputs">
-          <label>Price Range</label>
+          <label>Price Range (₹)</label>
           <div className="price-row">
             <input
               type="number"
-              placeholder="Min"
+              placeholder="Min (₹)"
               min="0"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
@@ -167,7 +167,7 @@ const Home = () => {
             <span>-</span>
             <input
               type="number"
-              placeholder="Max"
+              placeholder="Max (₹)"
               min="0"
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
