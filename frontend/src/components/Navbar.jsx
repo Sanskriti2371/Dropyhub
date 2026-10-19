@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <Link to="/" className="brand-logo">DealBridge</Link>
+        <Link to="/" className="brand-logo">BUYhatke</Link>
       </div>
 
       <div className="nav-links">

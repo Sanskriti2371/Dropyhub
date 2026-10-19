@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h2>Sign In to DealBridge</h2>
+        <h2>Sign In to BUYhatke</h2>
         <p className="auth-subtitle">Enter your credentials to access your account</p>
 
         {error && <div className="alert-error">{error}</div>}

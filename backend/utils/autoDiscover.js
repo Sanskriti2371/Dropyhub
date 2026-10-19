@@ -175,7 +175,7 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
   const query = rawQuery.trim();
 
   // 1. Identify brand
-  let detectedBrand = 'DealBridge Choice';
+  let detectedBrand = 'BUYhatke Choice';
   for (const b of BRAND_PATTERNS) {
     if (b.regex.test(query)) {
       detectedBrand = b.name;
@@ -203,13 +203,13 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
   // Generate 2 complementary product models
   const productConfigs = [
     {
-      name: `${detectedBrand !== 'DealBridge Choice' && !cleanTitle.toLowerCase().includes(detectedBrand.toLowerCase()) ? detectedBrand + ' ' : ''}${cleanTitle} (Standard Edition)`,
+      name: `${detectedBrand !== 'BUYhatke Choice' && !cleanTitle.toLowerCase().includes(detectedBrand.toLowerCase()) ? detectedBrand + ' ' : ''}${cleanTitle} (Standard Edition)`,
       model: cleanTitle,
       variant: 'Standard Edition',
       basePrice: config.basePrice
     },
     {
-      name: `${detectedBrand !== 'DealBridge Choice' && !cleanTitle.toLowerCase().includes(detectedBrand.toLowerCase()) ? detectedBrand + ' ' : ''}${cleanTitle} (Pro Edition)`,
+      name: `${detectedBrand !== 'BUYhatke Choice' && !cleanTitle.toLowerCase().includes(detectedBrand.toLowerCase()) ? detectedBrand + ' ' : ''}${cleanTitle} (Pro Edition)`,
       model: `${cleanTitle} Pro`,
       variant: 'Pro Edition',
       basePrice: Math.round(config.basePrice * 1.35)
@@ -263,7 +263,7 @@ const autoDiscoverProducts = async (rawQuery, requestedCategory) => {
       let productUrl;
       const encodedName = encodeURIComponent(cfg.name);
       if (off.merchant === 'Amazon India') {
-        productUrl = `https://www.amazon.in/s?k=${encodedName}&tag=dealbridge-21`;
+        productUrl = `https://www.amazon.in/s?k=${encodedName}&tag=buyhatke-21`;
       } else if (off.merchant === 'Flipkart') {
         productUrl = `https://www.flipkart.com/search?q=${encodedName}`;
       } else if (off.merchant === 'Myntra') {

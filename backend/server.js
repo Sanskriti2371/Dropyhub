@@ -84,7 +84,7 @@ app.use((err, req, res, next) => {
 // Start server
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`DealBridge API server running on port ${PORT}`);
+    console.log(`BUYhatke API server running on port ${PORT}`);
   });
 }
 

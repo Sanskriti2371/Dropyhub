@@ -67,7 +67,7 @@ function App() {
       </main>
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; {new Date().getFullYear()} DealBridge - Product Discovery &amp; Affiliate Commerce</p>
+          <p>&copy; {new Date().getFullYear()} BUYhatke - Product Discovery &amp; Affiliate Commerce</p>
         </div>
       </footer>
     </div>

@@ -41,7 +41,7 @@ const Register = () => {
     <div className="auth-container">
       <div className="auth-box">
         <h2>Create an Account</h2>
-        <p className="auth-subtitle">Join DealBridge to track deals and save to your wishlist</p>
+        <p className="auth-subtitle">Join BUYhatke to track deals and save to your wishlist</p>
 
         {error && <div className="alert-error">{error}</div>}
 

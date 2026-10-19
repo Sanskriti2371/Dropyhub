@@ -108,7 +108,7 @@ const Home = () => {
     <div className="page-container">
       <div className="home-header">
         <h1>Discover Products & Best Deals</h1>
-        <p>Find the best prices across multiple merchants with DealBridge</p>
+        <p>Find the best prices across multiple merchants with BUYhatke</p>
       </div>
 
       {/* Filter / Search Form */}
